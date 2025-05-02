@@ -1,4 +1,3 @@
-
 import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
 import { Event, Person, GeoLocation } from '../types';
 import { calculateDistance } from '../utils/geoUtils';
@@ -22,13 +21,13 @@ interface AppContextProps {
 
 const AppContext = createContext<AppContextProps | undefined>(undefined);
 
-// Sample data for initial state
+// Sample data for initial state with Malaysian locations
 const initialEvents: Event[] = [
   {
     id: '1',
-    name: 'Earthquake Alert',
-    description: 'Moderate earthquake reported in the area',
-    location: { lat: 37.7749, lng: -122.4194 }, // San Francisco
+    name: 'Flood Warning',
+    description: 'Heavy rainfall causing flooding in low-lying areas',
+    location: { lat: 3.1390, lng: 101.6869 }, // Kuala Lumpur
     radiusKm: 5,
     timestamp: Date.now(),
     type: 'natural'
@@ -38,21 +37,21 @@ const initialEvents: Event[] = [
 const initialPeople: Person[] = [
   {
     id: '1',
-    name: 'John Doe',
-    location: { lat: 37.7749, lng: -122.4194 }, // San Francisco
-    phoneNumber: '555-123-4567'
+    name: 'Ahmad Razali',
+    location: { lat: 3.1390, lng: 101.6869 }, // Kuala Lumpur
+    phoneNumber: '012-345-6789'
   },
   {
     id: '2',
-    name: 'Jane Smith',
-    location: { lat: 37.7739, lng: -122.4312 }, // Near San Francisco
-    phoneNumber: '555-987-6543'
+    name: 'Siti Aminah',
+    location: { lat: 3.1380, lng: 101.6912 }, // Near KL city center
+    phoneNumber: '019-876-5432'
   },
   {
     id: '3',
-    name: 'Mike Johnson',
-    location: { lat: 37.8049, lng: -122.4094 }, // Further away
-    phoneNumber: '555-456-7890'
+    name: 'Raj Kumar',
+    location: { lat: 3.0698, lng: 101.6048 }, // Subang Jaya area
+    phoneNumber: '017-123-4567'
   }
 ];
 
@@ -60,7 +59,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
   const [events, setEvents] = useState<Event[]>(initialEvents);
   const [people, setPeople] = useState<Person[]>(initialPeople);
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
-  const [mapCenter, setMapCenter] = useState<GeoLocation>({ lat: 37.7749, lng: -122.4194 }); // Default to SF
+  const [mapCenter, setMapCenter] = useState<GeoLocation>({ lat: 3.1390, lng: 101.6869 }); // Default to Kuala Lumpur
   const [mapZoom, setMapZoom] = useState<number>(12); // Default zoom level
 
   // Update people's affected status when events or people change

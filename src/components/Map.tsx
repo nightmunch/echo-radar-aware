@@ -203,7 +203,6 @@ const MapComponent: React.FC<MapComponentProps> = ({
           <React.Fragment key={event.id}>
             <Marker 
               position={[event.location.lat, event.location.lng]} 
-              icon={createEventIcon()}
               eventHandlers={{
                 click: () => setSelectedEvent(event)
               }}
@@ -217,13 +216,13 @@ const MapComponent: React.FC<MapComponentProps> = ({
             </Marker>
             <Circle 
               center={[event.location.lat, event.location.lng]}
-              radius={event.radiusKm * 1000}
               pathOptions={{
                 color: selectedEvent?.id === event.id ? '#ea384c' : '#0EA5E9',
                 fillColor: selectedEvent?.id === event.id ? '#ea384c' : '#0EA5E9',
                 fillOpacity: 0.2,
                 weight: 2
               }}
+              radius={event.radiusKm * 1000}
               eventHandlers={{
                 click: () => setSelectedEvent(event)
               }}
@@ -236,7 +235,6 @@ const MapComponent: React.FC<MapComponentProps> = ({
           <Marker 
             key={person.id}
             position={[person.location.lat, person.location.lng]}
-            icon={createPersonIcon(!!person.isAffected)}
           >
             <Popup>
               <div className="p-2">
