@@ -55,3 +55,12 @@ export function getEventTypeIcon(type: string): string {
       return 'info';
   }
 }
+
+// Check if a person is within an event radius
+export function isPersonAffected(personLocation: GeoLocation, eventLocation: GeoLocation, radiusKm: number): boolean {
+  const distance = calculateDistance(
+    personLocation.lat, personLocation.lng, 
+    eventLocation.lat, eventLocation.lng
+  );
+  return distance <= radiusKm;
+}
